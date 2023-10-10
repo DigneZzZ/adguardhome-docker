@@ -9,4 +9,13 @@ services:
     volumes:
       - ./work:/opt/adguardhome/work
       - ./conf:/opt/adguardhome/conf
-    network_mode: host
+    #network_mode: host #Это можно прописать если вы хотите запустить AGH на уровне хоста.
+    networks:
+      private_network:
+        ipv4_address: 10.10.0.10
+networks:
+  private_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.0.0/24
